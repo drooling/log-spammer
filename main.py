@@ -45,11 +45,13 @@ async def core():
 
     HEADERS = {"User-Agent": str(args.ua), "Referer": str(args.ref)}
 
-    print(f"""\rTarget URL: {args.link}
+    print(f"""
+    \rTarget URL: {args.link}
     \rAmount: {args.amount}
     \rProxy: {str(PROXY)}
-    \rHeaders: {str(HEADERS)}\n""")
-    
+    \rHeaders: {str(HEADERS)}
+    """)
+
     async with httpx.AsyncClient(proxies=PROXY) as session:
         async with trio.open_nursery() as nursery:
             for _ in range(int(args.amount // 10)):
